@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Folding Camp Benches",
+    "quantity": 4,
+    "description": "These lightweight and portable folding camp benches are ideal for outdoor adventures such as camping, picnics, or tailgating. Designed with sturdy metal frames and comfortable seating, they can support multiple people. The benches are compact when folded, making them easy to transport and store. The durable materials are weather-resistant, ensuring they hold up under different outdoor conditions. Available in a variety of colors, they complement any outdoor setup. Their quick setup and fold-down mechanism make them convenient for both adults and kids.",
+    "price": 49.99
+  },
+  {
+    "name": "Garden Furniture Sets",
+    "quantity": 8,
+    "description": "Our elegant garden furniture sets include a stylish table and matching chairs to transform your outdoor space into a relaxing retreat. Crafted from high-quality, weatherproof materials, they are built to last for years. The modern designs fit seamlessly into any garden, patio, or balcony. The chairs come with comfortable cushions for a luxurious seating experience. Perfect for hosting family dinners, garden parties, or simply enjoying your morning coffee outdoors. These sets require minimal maintenance and are easy to clean, ensuring they always look their best.",
+    "price": 299.99
+  },
+  {
+    "name": "Garden Chairs",
+    "quantity": 40,
+    "description": "Our garden chairs combine comfort and durability, making them the perfect addition to any outdoor setting. Made from weather-resistant materials, these chairs can withstand rain, sunlight, and varying temperatures. The ergonomic design provides excellent back support, ensuring hours of comfort. Lightweight yet sturdy, they are easy to move around and store. Available in multiple colors and finishes, they complement any garden decor. Whether you're enjoying a book, hosting a barbecue, or relaxing with friends, these chairs are a must-have.",
+    "price": 39.99
+  },
+  {
+    "name": "Chaise Lounges",
+    "quantity": 15,
+    "description": "These luxurious chaise lounges are the epitome of outdoor relaxation. With adjustable backrests, you can recline to your preferred angle for sunbathing or reading. The sleek and stylish design makes them a statement piece for any poolside or garden. Made from high-quality materials, they are resistant to UV rays and moisture, ensuring longevity. The padded cushions add an extra layer of comfort and are removable for easy cleaning. Ideal for those who love to unwind outdoors in style, these lounges redefine comfort.",
+    "price": 119.99
+  },
+  {
+    "name": "Sunloungers",
+    "quantity": 15,
+    "description": "Our sunloungers are designed for maximum comfort and relaxation, making them a staple for any outdoor area. Featuring adjustable reclining positions, they allow you to lie flat or sit upright as needed. Crafted with durable, weatherproof materials, they can withstand long-term exposure to sunlight and rain. The ergonomic design supports your body, reducing strain and fatigue during extended use. These loungers are lightweight yet sturdy, making them easy to move around your garden or patio. Add some cushions or a small table nearby for the ultimate relaxation experience.",
+    "price": 149.99
+  },
+  {
+    "name": "Hanging Chairs",
+    "quantity": 5,
+    "description": "Our hanging chairs are the perfect blend of style and comfort, designed to create a cozy retreat in any garden or patio. Suspended from a sturdy frame, these chairs gently sway for a soothing experience. The spacious seating area comes with plush cushions, making it ideal for relaxing with a book or enjoying the fresh air. Built with high-quality materials, the chairs are durable and weather-resistant. The modern aesthetic adds a touch of elegance to any outdoor space. Assembly is simple, and the design is both functional and stylish.",
+    "price": 199.99
+  },
+  {
+    "name": "Awnings",
+    "quantity": 8,
+    "description": "Our retractable awnings provide the perfect solution for shade and weather protection in outdoor spaces. Available in various sizes and colors, they blend seamlessly into any architectural style. The high-quality fabric is resistant to UV rays and water, ensuring durability in different climates. Easy to operate with manual or motorized options, these awnings offer convenience and functionality. Whether installed over a patio, balcony, or window, they enhance comfort while reducing heat indoors. Maintenance is minimal, making them an excellent long-term investment.",
+    "price": 249.99
+  },
+  {
+    "name": "Garden Swings",
+    "quantity": 7,
+    "description": "Our garden swings are designed to bring joy and relaxation to your outdoor area. With a sturdy frame and comfortable seating, they are perfect for family gatherings or quiet afternoons. The swings come with a protective canopy to shield you from the sun while you sway. Made from durable materials, they resist rust and wear, ensuring they last for years. The design accommodates multiple people, making it great for socializing. Easy to assemble and maintain, these swings add a playful and elegant touch to any garden.",
+    "price": 349.99
+  },
+  {
+    "name": "Garden Benches",
+    "quantity": 11,
+    "description": "Our classic garden benches are a timeless addition to any outdoor setting. Constructed from high-quality wood or metal, they provide a perfect blend of durability and style. The ergonomic design ensures a comfortable seating experience, whether you're enjoying a quiet moment alone or hosting guests. Resistant to weather and wear, these benches are built to withstand the elements. They are versatile enough to complement any garden or patio decor. Ideal for parks, gardens, or porches, they bring charm and functionality to your outdoor space.",
+    "price": 99.99
+  },
+  {
+    "name": "Children's Playgrounds",
+    "quantity": 4,
+    "description": "Our children’s playgrounds are designed to provide endless fun and entertainment for kids. These sets include slides, swings, climbing walls, and other engaging features to encourage active play. Constructed with safety in mind, they use durable, non-toxic materials and have smooth edges to prevent injuries. The colorful and playful designs spark creativity and imagination in children. These playgrounds are weather-resistant, making them suitable for all seasons. They are easy to assemble and fit well in backyards or community spaces, providing hours of joy for kids of all ages.",
+    "price": 799.99
+  },
+  {
+    "name": "Garden Pavilions",
+    "quantity": 6,
+    "description": "Our elegant garden pavilions create a shaded retreat in your backyard, ideal for relaxing or hosting gatherings. Made from durable, weather-resistant materials, they can withstand varying weather conditions. The spacious design accommodates furniture, making it perfect for outdoor dining or lounging. Available in various styles, these pavilions enhance the aesthetic appeal of your garden or patio. The sturdy framework ensures stability, while the fabric or polycarbonate roofing offers protection from sun and rain. Easy to assemble, these pavilions are both functional and decorative.",
+    "price": 599.99
+  },
+  {
+    "name": "Garden Tables",
+    "quantity": 18,
+    "description": "Our garden tables combine functionality with style, making them a must-have for outdoor spaces. Made from weatherproof materials like metal, wood, or glass, they are built to withstand the elements. The spacious surface provides ample room for meals, games, or decorations. Available in various shapes and sizes, these tables fit perfectly in gardens, patios, or balconies. Their sleek designs complement any outdoor furniture set, adding a touch of elegance. Low-maintenance and durable, they are ideal for entertaining guests or enjoying family meals outdoors.",
+    "price": 149.99
+  },
+  {
+    "name": "Garden Sofas",
+    "quantity": 10,
+    "description": "Our garden sofas offer the ultimate comfort for outdoor relaxation. Designed with plush, weather-resistant cushions and sturdy frames, they provide long-lasting durability and style. The modular designs allow for flexible arrangements to suit your space and needs. Perfect for entertaining guests or enjoying a quiet moment outdoors, these sofas enhance the functionality of any garden or patio. The materials are easy to clean and maintain, ensuring they look great all year round. With a variety of colors and styles to choose from, these sofas elevate your outdoor living experience.",
+    "price": 499.99
+  },
+  {
+    "name": "Outdoor Cushions",
+    "quantity": 30,
+    "description": "Our outdoor cushions are designed to add comfort and style to your garden furniture. Made from water-resistant and UV-protected fabrics, they maintain their vibrant colors even under the sun. The soft padding provides exceptional comfort for prolonged use. Available in a range of colors and patterns, these cushions suit any decor. They are easy to clean, with removable covers that can be machine washed. Lightweight and versatile, these cushions are perfect for chairs, benches, or even as floor cushions for picnics and lounging.",
+    "price": 19.99
+  },
+  {
+    "name": "Outdoor Mattress",
+    "quantity": 19,
+    "description": "Our outdoor mattresses are crafted for relaxation, whether it's on a hammock, lounge chair, or directly on the grass. Made with thick, high-density foam, they provide excellent support and comfort. The covers are water-resistant and UV-treated to withstand the elements. Lightweight and portable, they are easy to roll up and store. The stylish designs enhance the aesthetic appeal of any outdoor space. Ideal for sunbathing, reading, or napping outdoors, these mattresses are a perfect addition to your garden setup.",
+    "price": 59.99
+  },
+  {
+    "name": "Hammocks",
+    "quantity": 14,
+    "description": "Our hammocks are the ultimate symbol of relaxation, perfect for lounging in the garden, on the porch, or even indoors. Made from strong, breathable fabric, they are designed to support your body comfortably. The durable ropes and metal hooks ensure safety and stability during use. Easy to set up between trees or on a stand, these hammocks are highly portable. Available in a variety of colors and patterns, they bring a vibrant touch to your outdoor space. Lightweight yet sturdy, they are perfect for unwinding after a long day.",
+    "price": 39.99
+  },
+  {
+    "name": "Picnic Blankets",
+    "quantity": 25,
+    "description": "Our picnic blankets are designed for outdoor comfort, combining style and functionality. Made from waterproof and sand-resistant materials, they keep you dry and clean on any surface. The soft fleece top layer adds a touch of luxury, while the compact, foldable design makes them easy to carry. Available in various patterns and sizes, they are perfect for picnics, beach outings, or family gatherings in the park. Durable and lightweight, these blankets are easy to clean and store. With their practical design, they are a must-have for outdoor enthusiasts.",
+    "price": 24.99
+  },
+  {
+    "name": "Garden Parasols",
+    "quantity": 22,
+    "description": "Our garden parasols provide ample shade for hot summer days, making outdoor relaxation more enjoyable. Designed with a sturdy pole and adjustable canopy, they offer flexible positioning to block the sun effectively. The UV-resistant fabric ensures durability and protects against harmful rays. Easy to open and close, these parasols are user-friendly and practical. Available in a variety of colors and styles, they enhance the aesthetic of any outdoor area. Perfect for patios, gardens, or poolside setups, they combine style and functionality seamlessly.",
+    "price": 99.99
+  },
+  {
+    "name": "Parasol Stands",
+    "quantity": 10,
+    "description": "Our parasol stands are designed to provide a stable and secure base for your garden umbrellas. Made from heavy-duty materials like concrete or cast iron, they can withstand strong winds and keep your parasol firmly in place. The adjustable fittings accommodate poles of various sizes. Their sleek designs blend seamlessly with any outdoor decor. Easy to set up and maintain, these stands ensure your parasol stays upright and functional throughout the seasons. A must-have accessory for anyone with a garden parasol.",
+    "price": 49.99
+  },
+  {
+    "name": "Cushion Storage Boxes",
+    "quantity": 8,
+    "description": "Our cushion storage boxes offer a practical and stylish solution for keeping your outdoor cushions, blankets, and other items safe. Made from weather-resistant materials, they protect against moisture, dirt, and UV rays. The spacious interior provides ample room for multiple items. Equipped with a sturdy lid, some models also double as additional seating. The sleek designs blend seamlessly into any garden or patio decor. Easy to assemble and maintain, these storage boxes are a versatile addition to your outdoor setup.",
+    "price": 119.99
+  }
+]
