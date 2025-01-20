@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis Garden Store</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+
+<body>
+    <header class="header">
+        <div class="gif gif-left"> <img src="/images/butterfly.gif" alt="Butterfly GIF"> </div>
+        <div class="gif gif-right"> <img src="/images/butterfly.gif" alt="Butterfly GIF"> </div> <a href="/">
+            <h1 class="label">Oasis<br><span class="label">Garden Store</span></h1>
+        </a>
+        <nav> <a href="/#products" id="products-link">Products</a> <a href="/cart">Cart</a> <a
+                href="/wishlist">Wishlist</a> </nav>
+    </header>
+    <div id="dropdown-content" class="dropdown-content">
+        <div class="product-short-list">
+            <% products.forEach(product=> { %> <div class="product-item"> <a href="/product/<%= product.name %>">
+                        <%= product.name %>
+                    </a> </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="slides">
+            <% for (let i=1; i <=10; i++) { %>
+                <img src="/images/slide-<%= i %>.jpg" alt="Slide <%= i %>">
+                <% } %>
+        </div>
+        <div class="controls">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+        <div class="indicators">
+            <% for (let i=0; i < 10; i++) { %>
+                <button data-slide="<%= i %>" class="<%= i === 0 ? 'active' : '' %>"></button>
+                <% } %>
+        </div>
+    </div>
+
+    <h2 id="products">Our Products</h2>
+    <div class="product-list">
+        <% products.forEach(product=> { %>
+            <div class="product-card" data-name="<%= product.name %>">
+                <a href="/product/<%= product.name %>" class="product">
+                    <img src="/images/<%= product.name %>/photo-1.jpg" alt="<%= product.name %>">
+                    <h3>
+                        <%= product.name %>
+                    </h3>
+
+                    <p class="product-qty">In stock: <%= product.quantity %>
+                    </p>
+
+                    <p class="product-price">
+                        <%= product.price %> $
+                    </p>
+                </a>
+                <a href="/product/<%= product.name %>" class="button">View details</a>
+            </div>
+            <% }) %>
+    </div>
+
+    <footer>
+        <p>Oasis Garden Store &copy; 2025</p>
+    </footer>
+
+    <script src="js\banner.js"></script>
+    <script>
+        const productsLink = document.getElementById('products-link');
+        const dropdownContent = document.getElementById('dropdown-content');
+
+        productsLink.addEventListener('mouseenter', () => {
+            dropdownContent.style.display = 'block';
+        });
+
+        productsLink.addEventListener('mouseleave', () => {
+            dropdownContent.style.display = 'none';
+        });
+
+        dropdownContent.addEventListener('mouseenter', () => {
+            dropdownContent.style.display = 'block';
+        });
+
+        dropdownContent.addEventListener('mouseleave', () => {
+            dropdownContent.style.display = 'none';
+        });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            let currentImageIndex = 1;
+            let intervalId;
+            const maxImages = 5;
+            const productName = card.dataset.name;
+            const imageElement = card.querySelector('img');
+            const originalImage = imageElement.src;
+
+            // Function for changing the photo
+            const startImageRotation = () => {
+                intervalId = setInterval(() => {
+                    currentImageIndex = (currentImageIndex % maxImages) + 1;
+                    imageElement.src = `/images/${productName}/photo-${currentImageIndex}.jpg`;
+                }, 2000);
+            };
+
+            // Function to stop changing the photo
+            const stopImageRotation = () => {
+                clearInterval(intervalId); // Stop the interval
+                imageElement.src = originalImage;
+            };
+
+            // Processing of induction
+            card.addEventListener('mouseenter', () => {
+                currentImageIndex = 1; // Reset to the original photo
+                imageElement.src = `/images/${productName}/photo-${currentImageIndex}.jpg`;
+                startImageRotation();
+            });
+
+            // Processing of the outlet
+            card.addEventListener('mouseleave', stopImageRotation);
+        });
+    </script>
+
+</body>
+
+</html>

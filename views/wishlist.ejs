@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="gif gif-left">
+            <img src="/images/butterfly.gif" alt="Butterfly GIF">
+        </div>
+        <div class="gif gif-right">
+            <img src="/images/butterfly.gif" alt="Butterfly GIF">
+        </div>
+        <a href="/">
+            <h1 class="label">Oasis<br><span class="label">Garden Store</span></h1>
+        </a>
+        <nav>
+            <a href="/#products">Products</a>
+            <a href="/cart">Cart</a>
+            <a href="/wishlist">Wishlist</a>
+        </nav>
+    </header>
+
+
+    <div class="banner">
+        <div class="slides">
+            <% for (let i=1; i <=10; i++) { %>
+                <img src="/images/slide-<%= i %>.jpg" alt="Slide <%= i %>">
+                <% } %>
+        </div>
+        <div class="controls">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+        <div class="indicators">
+            <% for (let i=0; i < 10; i++) { %>
+                <button data-slide="<%= i %>" class="<%= i === 0 ? 'active' : '' %>"></button>
+                <% } %>
+        </div>
+    </div>
+
+    <div class="wishlist">
+        <h1>Your Wishlist</h1>
+        <% if (wishlist.length> 0) { %>
+            <ul>
+                <% wishlist.forEach(item=> { %>
+                    <a href="/product/<%= item.name %>" class="product">
+                        <li class="wishlist-item">
+                            <div class="wishlist-item-image">
+                                <img src="/images/<%= item.name %>.jpg" alt="<%= item.name %>" class="rounded-image">
+                            </div>
+
+                            <div class="wishlist-item-info">
+                                <h3 class="wishlist-item-title">
+                                    <%= item.name %>
+                                </h3>
+                                <p class="product-price">
+                                    <%= item.price %> $
+                                </p>
+
+                            </div>
+
+                            <form action="/wishlist/remove" method="POST">
+                                <input type="hidden" name="productName" value="<%= item.name %>">
+                                <button class="button" type="submit">Remove</button>
+                            </form>
+                        </li>
+                    </a>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p>Your wishlist is empty.</p>
+                <% } %>
+                    <a class="button" href="/">Continue shopping</a>
+    </div>
+
+    <footer>
+        <p>Oasis Garden Store &copy; 2025</p>
+    </footer>
+
+    <script src="js\banner.js"></script>
+</body>
+
+</html>

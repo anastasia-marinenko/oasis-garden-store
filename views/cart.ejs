@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="gif gif-left">
+            <img src="/images/butterfly.gif" alt="Butterfly GIF">
+        </div>
+        <div class="gif gif-right">
+            <img src="/images/butterfly.gif" alt="Butterfly GIF">
+        </div>
+        <a href="/">
+            <h1 class="label">Oasis<br><span class="label">Garden Store</span></h1>
+        </a>
+        <nav>
+            <a href="/#products">Products</a>
+            <a href="/cart">Cart</a>
+            <a href="/wishlist">Wishlist</a>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <div class="slides">
+            <% for (let i=1; i <=10; i++) { %>
+                <img src="/images/slide-<%= i %>.jpg" alt="Slide <%= i %>">
+                <% } %>
+        </div>
+        <div class="controls">
+            <button id="prev">&lt;</button>
+            <button id="next">&gt;</button>
+        </div>
+        <div class="indicators">
+            <% for (let i=0; i < 10; i++) { %>
+                <button data-slide="<%= i %>" class="<%= i === 0 ? 'active' : '' %>"></button>
+                <% } %>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h1>Your Shopping Cart</h1>
+        <% if (cart.length===0) { %>
+            <p>Your cart is empty.</p>
+            <% } else { %>
+                <table>
+                    <tr>
+                        <th colspan="2">Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total price</th>
+                    </tr>
+                    <% cart.forEach(item=> { %>
+                        <tr>
+                            <td id="cart-image">
+                                <img src="/images/<%= item.productName %>.jpg" alt="<%= item.name %>"
+                                    class="rounded-image">
+                            </td>
+                            <td>
+                                <%= item.productName %>
+                            </td>
+                            <td>
+                                <%= item.productQuantity %>
+                            </td>
+                            <td>
+                                <%= item.productPrice %> $
+                            </td>
+                            <td>
+                                <%= item.productQuantity * item.productPrice %> $
+                            </td>
+                            <td id="remove-cart">
+                                <form action="/cart/remove" method="POST" style="display:inline;">
+                                    <input type="hidden" name="productName" value="<%= item.productName %>">
+                                    <input type="hidden" name="productPrice" value="<%= item.productPrice %>">
+                                    <button type="submit" class="remove-button" title="Remove item">x</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+
+                <form action="/order/confirm" method="POST">
+                    <% cart.forEach(item=> { %>
+                        <input type="hidden" name="productName" value="<%= item.productName %>">
+                        <input type="hidden" name="productQuantity" value="<%= item.productQuantity %>">
+                        <% }); %>
+                            <button class="button" type="submit">Confirm the order</button>
+                </form>
+                <% } %>
+    </div>
+
+    <footer>
+        <p>Oasis Garden Store &copy; 2025</p>
+    </footer>
+
+    <script src="js\banner.js"></script>
+</body>
+
+</html>
