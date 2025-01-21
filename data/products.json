@@ -1,19 +1,19 @@
 [
   {
     "name": "Folding Camp Benches",
-    "quantity": 4,
+    "quantity": 25,
     "description": "These lightweight and portable folding camp benches are ideal for outdoor adventures such as camping, picnics, or tailgating. Designed with sturdy metal frames and comfortable seating, they can support multiple people. The benches are compact when folded, making them easy to transport and store. The durable materials are weather-resistant, ensuring they hold up under different outdoor conditions. Available in a variety of colors, they complement any outdoor setup. Their quick setup and fold-down mechanism make them convenient for both adults and kids.",
     "price": 49.99
   },
   {
     "name": "Garden Furniture Sets",
-    "quantity": 8,
+    "quantity": 10,
     "description": "Our elegant garden furniture sets include a stylish table and matching chairs to transform your outdoor space into a relaxing retreat. Crafted from high-quality, weatherproof materials, they are built to last for years. The modern designs fit seamlessly into any garden, patio, or balcony. The chairs come with comfortable cushions for a luxurious seating experience. Perfect for hosting family dinners, garden parties, or simply enjoying your morning coffee outdoors. These sets require minimal maintenance and are easy to clean, ensuring they always look their best.",
     "price": 299.99
   },
   {
     "name": "Garden Chairs",
-    "quantity": 40,
+    "quantity": 50,
     "description": "Our garden chairs combine comfort and durability, making them the perfect addition to any outdoor setting. Made from weather-resistant materials, these chairs can withstand rain, sunlight, and varying temperatures. The ergonomic design provides excellent back support, ensuring hours of comfort. Lightweight yet sturdy, they are easy to move around and store. Available in multiple colors and finishes, they complement any garden decor. Whether you're enjoying a book, hosting a barbecue, or relaxing with friends, these chairs are a must-have.",
     "price": 39.99
   },
@@ -25,7 +25,7 @@
   },
   {
     "name": "Sunloungers",
-    "quantity": 15,
+    "quantity": 20,
     "description": "Our sunloungers are designed for maximum comfort and relaxation, making them a staple for any outdoor area. Featuring adjustable reclining positions, they allow you to lie flat or sit upright as needed. Crafted with durable, weatherproof materials, they can withstand long-term exposure to sunlight and rain. The ergonomic design supports your body, reducing strain and fatigue during extended use. These loungers are lightweight yet sturdy, making them easy to move around your garden or patio. Add some cushions or a small table nearby for the ultimate relaxation experience.",
     "price": 149.99
   },
@@ -49,7 +49,7 @@
   },
   {
     "name": "Garden Benches",
-    "quantity": 11,
+    "quantity": 12,
     "description": "Our classic garden benches are a timeless addition to any outdoor setting. Constructed from high-quality wood or metal, they provide a perfect blend of durability and style. The ergonomic design ensures a comfortable seating experience, whether you're enjoying a quiet moment alone or hosting guests. Resistant to weather and wear, these benches are built to withstand the elements. They are versatile enough to complement any garden or patio decor. Ideal for parks, gardens, or porches, they bring charm and functionality to your outdoor space.",
     "price": 99.99
   },
@@ -85,7 +85,7 @@
   },
   {
     "name": "Outdoor Mattress",
-    "quantity": 19,
+    "quantity": 20,
     "description": "Our outdoor mattresses are crafted for relaxation, whether it's on a hammock, lounge chair, or directly on the grass. Made with thick, high-density foam, they provide excellent support and comfort. The covers are water-resistant and UV-treated to withstand the elements. Lightweight and portable, they are easy to roll up and store. The stylish designs enhance the aesthetic appeal of any outdoor space. Ideal for sunbathing, reading, or napping outdoors, these mattresses are a perfect addition to your garden setup.",
     "price": 59.99
   },
