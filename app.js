@@ -306,5 +306,8 @@ app.post('/cart/remove', (req, res) => {
     res.redirect('/cart');
 });
 
-//app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Uncomment if you are running the site on a local server
+//app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`)); 
+
+// Comment if you are running the site on a local server
 module.exports = app;
