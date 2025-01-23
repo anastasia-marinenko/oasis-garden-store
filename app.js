@@ -50,8 +50,14 @@ const productsFile = './data/products.json';
 
 // Receiving a list of products
 const getProducts = () => {
-    return JSON.parse(fs.readFileSync(productsFile));
+    try {
+        return JSON.parse(fs.readFileSync(productsFile));
+    } catch (err) {
+        console.error('Error reading products file:', err);
+        return [];
+    }
 };
+
 
 // Home page (Product list)
 app.get('/', (req, res) => {
