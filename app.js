@@ -171,46 +171,42 @@ app.get('/cart', (req, res) => {
     res.render('cart', { cart });
 });
 
-// Order confirmation
-app.post('/order/confirm', (req, res) => {
-    const cart = req.session.cart || [];
+const productSchema = new mongoose.Schema({
+    name: String,
+    quantity: Number,
+    price: Number,
+    description: String
+});
 
+const Product = mongoose.model('Product', productSchema);
+
+// Замість запису у файл, оновлюємо дані у MongoDB
+app.post('/order/confirm', async (req, res) => {
+    const cart = req.session.cart || [];
     if (cart.length === 0) {
         return res.status(400).send('The basket is empty or damaged.');
     }
 
-    const products = getProducts();
-
-    // Checking whether there are enough products in the warehouse
-    for (const item of cart) {
-        const product = products.find(p => p.name === item.productName);
-
-        if (!product) {
-            return res.status(400).send(`Product "${item.productName}" is not in stock.`);
-        }
-        if (product.quantity < item.productQuantity) {
-            return res.status(400).send(`The product "${item.productName}" is out of stock.`);
-        }
-    }
-
-    // If the check is successful, reduce the number of items
-    cart.forEach(item => {
-        const product = products.find(p => p.name === item.productName);
-        product.quantity -= item.productQuantity;
-    });
-
-    // Update the file
     try {
-        fs.writeFileSync(productsFile, JSON.stringify(products, null, 2));
+        for (const item of cart) {
+            const product = await Product.findOne({ name: item.productName });
+            if (!product) {
+                return res.status(400).send(`Product "${item.productName}" is not in stock.`);
+            }
+            if (product.quantity < item.productQuantity) {
+                return res.status(400).send(`The product "${item.productName}" is out of stock.`);
+            }
+
+            product.quantity -= item.productQuantity;
+            await product.save();
+        }
+
+        req.session.cart = [];
+        res.render('orderConfirmation', { cart });
     } catch (err) {
-        console.error("Error writing to file:", err);
+        console.error('Error updating warehouse data:', err);
         return res.status(500).send('Error updating warehouse data.');
     }
-
-    // Empty the basket
-    req.session.cart = [];
-
-    res.render('orderConfirmation', { cart });
 });
 
 let wishlist = [];
