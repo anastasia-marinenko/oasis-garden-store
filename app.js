@@ -203,6 +203,7 @@ loadProductsFromFile();
 
 // Замість запису у файл, оновлюємо дані у MongoDB
 // Оновлення бази після завершення сесії або при першому запиті
+// Оновлення бази даних після покупки продукту
 app.post('/order/confirm', async (req, res) => {
     const cart = req.session.cart || [];
     if (cart.length === 0) {
@@ -210,25 +211,30 @@ app.post('/order/confirm', async (req, res) => {
     }
 
     try {
+        // Перебір всіх товарів у кошику
         for (const item of cart) {
+            // Шукаємо продукт в базі даних за його ім'ям
             const product = await Product.findOne({ name: item.productName });
             if (!product) {
                 return res.status(400).send(`Product "${item.productName}" is not in stock.`);
             }
+
+            // Перевіряємо, чи є достатня кількість товару на складі
             if (product.quantity < item.productQuantity) {
                 return res.status(400).send(`The product "${item.productName}" is out of stock.`);
             }
 
+            // Зменшуємо кількість товару в базі
             product.quantity -= item.productQuantity;
+
+            // Зберігаємо оновлені дані в базу
             await product.save();
         }
 
-        // Оновлюємо базу даних з файлу, коли сесія завершена
-        if (!req.session.cart) {
-            await loadProductsFromFile(); // Оновлюємо базу даних при завершенні сесії
-        }
-
+        // Очищаємо кошик після підтвердження замовлення
         req.session.cart = [];
+
+        // Відправляємо підтвердження покупки
         res.render('orderConfirmation', { cart });
     } catch (err) {
         console.error('Error updating warehouse data:', err);
