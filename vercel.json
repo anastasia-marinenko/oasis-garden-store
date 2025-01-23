@@ -6,23 +6,7 @@
             "use": "@vercel/node"
         },
         {
-            "src": "orderProcessor.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "routes/**",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "data/**",
-            "use": "@vercel/node"
-        },
-        {
             "src": "public/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "views/**",
             "use": "@vercel/static"
         }
     ],
@@ -30,6 +14,30 @@
         {
             "src": "/api/(.*)",
             "dest": "app.js"
+        },
+        {
+            "src": "/data/products.json",
+            "dest": "/data/products.json"
+        },
+        {
+            "src": "/public/(.*)",
+            "dest": "/public/$1"
+        },
+        {
+            "src": "/views/(.*)",
+            "dest": "/views/$1"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
+        },
+        {
+            "src": "/images/(.*)",
+            "dest": "/public/images/$1"
+        },
+        {
+            "src": "/css/(.*)",
+            "dest": "/public/css/$1"
         },
         {
             "src": "/(.*)",
