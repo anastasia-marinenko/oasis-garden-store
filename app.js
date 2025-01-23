@@ -49,19 +49,18 @@ app.set('view engine', 'ejs');
 const productsFile = path.resolve(__dirname, './data/products.json');
 
 // Receiving a list of products
-const getProducts = () => {
+const getProducts = async () => {
     try {
-        return JSON.parse(fs.readFileSync(productsFile));
+        return await Product.find({});
     } catch (err) {
-        console.error('Error reading products file:', err);
+        console.error('Error reading products from database:', err);
         return [];
     }
 };
 
-
 // Home page (Product list)
-app.get('/', (req, res) => {
-    const products = getProducts();
+app.get('/', async (req, res) => {
+    const products = await getProducts();
     res.render('index', { products });
 });
 
@@ -186,10 +185,8 @@ const loadProductsFromFile = async () => {
         const fileData = fs.readFileSync('./data/products.json', 'utf-8');
         const products = JSON.parse(fileData);
 
-        // Перевіряємо, чи є продукти в базі
         const existingProducts = await Product.countDocuments();
         if (existingProducts === 0) {
-            // Якщо база порожня, записуємо продукти з файлу
             await Product.insertMany(products);
             console.log('Products loaded into the database');
         }
@@ -204,6 +201,7 @@ loadProductsFromFile();
 // Замість запису у файл, оновлюємо дані у MongoDB
 // Оновлення бази після завершення сесії або при першому запиті
 // Оновлення бази даних після покупки продукту
+// Оновлення бази після підтвердження замовлення
 app.post('/order/confirm', async (req, res) => {
     const cart = req.session.cart || [];
     if (cart.length === 0) {
@@ -211,30 +209,21 @@ app.post('/order/confirm', async (req, res) => {
     }
 
     try {
-        // Перебір всіх товарів у кошику
         for (const item of cart) {
-            // Шукаємо продукт в базі даних за його ім'ям
             const product = await Product.findOne({ name: item.productName });
             if (!product) {
                 return res.status(400).send(`Product "${item.productName}" is not in stock.`);
             }
 
-            // Перевіряємо, чи є достатня кількість товару на складі
             if (product.quantity < item.productQuantity) {
                 return res.status(400).send(`The product "${item.productName}" is out of stock.`);
             }
 
-            // Зменшуємо кількість товару в базі
             product.quantity -= item.productQuantity;
-
-            // Зберігаємо оновлені дані в базу
-            await product.save();
+            await product.save(); // Оновлення продукту в базі даних
         }
 
-        // Очищаємо кошик після підтвердження замовлення
         req.session.cart = [];
-
-        // Відправляємо підтвердження покупки
         res.render('orderConfirmation', { cart });
     } catch (err) {
         console.error('Error updating warehouse data:', err);
