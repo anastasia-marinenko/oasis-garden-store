@@ -17,7 +17,7 @@
         },
         {
             "src": "/",
-            "dest": "views\index.ejs"
+            "dest": "views/index.ejs"
         },
         {
             "src": "/(.+)",
