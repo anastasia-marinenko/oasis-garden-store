@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const path = require('path');
-const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -227,4 +226,4 @@ app.post('/cart/remove', (req, res) => {
     res.redirect('/cart');
 });
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+module.exports = app;
