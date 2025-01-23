@@ -46,7 +46,7 @@ app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const productsFile = './data/products.json';
+const productsFile = path.resolve(__dirname, './data/products.json');
 
 // Receiving a list of products
 const getProducts = () => {
