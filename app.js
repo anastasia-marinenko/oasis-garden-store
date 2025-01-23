@@ -1,4 +1,4 @@
-require('dotenv').config(); // Імпорт змінних середовища
+require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
@@ -8,13 +8,11 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Порт можна теж витягувати з середовища
+const PORT = process.env.PORT || 3000;
 
-// Використання змінних середовища
-const MONGO_URI = process.env.MONGO_URI; // MongoDB URI
-const SESSION_SECRET = process.env.SESSION_SECRET; // Секретний ключ для сесій
+const MONGO_URI = process.env.MONGO_URI;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
-// Підключення до MongoDB
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -24,18 +22,17 @@ mongoose.connect(MONGO_URI, {
     console.error("Error connecting to MongoDB:", err);
 });
 
-// Налаштування сесій
 app.use(session({
-    secret: SESSION_SECRET, // Використання секрету з .env
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: MONGO_URI, // Використання URI MongoDB
+        mongoUrl: MONGO_URI,
         collectionName: 'sessions',
-        ttl: 60 * 60 * 24 // Час зберігання сесії (1 день)
+        ttl: 60 * 60 * 24 // Session storage time (1 day)
     }),
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // Cookie зберігається 1 день
+        maxAge: 1000 * 60 * 60 * 24 // Cookie is stored for 1 day
     }
 }));
 
@@ -122,10 +119,8 @@ app.post('/api/order', (req, res) => {
         return res.status(400).json({ success: false, message: 'Not enough products in the warehouse.' });
     }
 
-    // Зменшуємо залишок
     product.quantity -= quantity;
 
-    // Оновлюємо файл
     try {
         fs.writeFileSync(productsFile, JSON.stringify(products, null, 2));
     } catch (err) {
@@ -143,7 +138,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// Route to add a product to the basket
 // Route to add a product to the basket
 app.post('/cart/add', async (req, res) => {
     const { productName, productQuantity, productPrice } = req.body;
@@ -206,7 +200,7 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
-// Функція для завантаження продуктів з файлу в базу даних
+// Function for loading products from a file into the database
 const loadProductsFromFile = async () => {
     try {
         const fileData = fs.readFileSync('./data/products.json', 'utf-8');
@@ -222,13 +216,10 @@ const loadProductsFromFile = async () => {
     }
 };
 
-// Викликаємо цю функцію при запуску сервера
+// Call this function when the server starts
 loadProductsFromFile();
 
-// Замість запису у файл, оновлюємо дані у MongoDB
-// Оновлення бази після завершення сесії або при першому запиті
-// Оновлення бази даних після покупки продукту
-// Оновлення бази після підтвердження замовлення
+// Instead of writing to a file, we update the data in MongoDB after the session ends or on the first request (after purchasing the product)
 app.post('/order/confirm', async (req, res) => {
     const cart = req.session.cart || [];
     if (cart.length === 0) {
@@ -247,7 +238,7 @@ app.post('/order/confirm', async (req, res) => {
             }
 
             product.quantity -= item.productQuantity;
-            await product.save(); // Оновлення продукту в базі даних
+            await product.save(); // Update the product in the database
         }
 
         req.session.cart = [];
