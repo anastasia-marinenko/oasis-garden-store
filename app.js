@@ -1,7 +1,43 @@
+require('dotenv').config(); // Імпорт змінних середовища
+
 const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 const fs = require('fs');
-const app = express();
 const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3000; // Порт можна теж витягувати з середовища
+
+// Використання змінних середовища
+const MONGO_URI = process.env.MONGO_URI; // MongoDB URI
+const SESSION_SECRET = process.env.SESSION_SECRET; // Секретний ключ для сесій
+
+// Підключення до MongoDB
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to MongoDB");
+}).catch(err => {
+    console.error("Error connecting to MongoDB:", err);
+});
+
+// Налаштування сесій
+app.use(session({
+    secret: SESSION_SECRET, // Використання секрету з .env
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: MONGO_URI, // Використання URI MongoDB
+        collectionName: 'sessions',
+        ttl: 60 * 60 * 24 // Час зберігання сесії (1 день)
+    }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // Cookie зберігається 1 день
+    }
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -79,8 +115,6 @@ app.post('/api/order', (req, res) => {
 
     res.json({ success: true, message: 'The order has been placed successfully.' });
 });
-
-const session = require('express-session');
 
 // Setting up a session
 app.use(session({
@@ -226,4 +260,4 @@ app.post('/cart/remove', (req, res) => {
     res.redirect('/cart');
 });
 
-module.exports = app;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
