@@ -144,7 +144,8 @@ app.use(session({
 }));
 
 // Route to add a product to the basket
-app.post('/cart/add', (req, res) => {
+// Route to add a product to the basket
+app.post('/cart/add', async (req, res) => {
     const { productName, productQuantity, productPrice } = req.body;
     const quantity = parseInt(productQuantity, 10);
 
@@ -152,30 +153,37 @@ app.post('/cart/add', (req, res) => {
         return res.status(400).send('Incorrect data to add to cart.');
     }
 
-    const products = getProducts();
-    const product = products.find(p => p.name === productName);
+    try {
+        const products = await getProducts();
+        const product = products.find(p => p.name === productName);
 
-    if (!product) {
-        return res.status(404).send('Item not found.');
+        if (!product) {
+            return res.status(404).send('Item not found.');
+        }
+
+        if (quantity > product.quantity) {
+            return res.status(400).send('Not enough goods in the warehouse.');
+        }
+
+        // Initialize cart in session if it doesn't exist
+        if (!req.session.cart) {
+            req.session.cart = [];
+        }
+
+        // Check if product already exists in cart
+        const existingProductIndex = req.session.cart.findIndex(item => item.productName === productName);
+
+        if (existingProductIndex !== -1) {
+            req.session.cart[existingProductIndex].productQuantity += quantity;
+        } else {
+            req.session.cart.push({ productName, productQuantity: quantity, productPrice });
+        }
+
+        res.redirect('/cart');
+    } catch (err) {
+        console.error('Error adding product to cart:', err);
+        res.status(500).send('Server error while adding product to cart.');
     }
-
-    if (quantity > product.quantity) {
-        return res.status(400).send('Not enough goods in the warehouse.');
-    }
-
-    if (!req.session.cart) {
-        req.session.cart = [];
-    }
-
-    const existingProductIndex = req.session.cart.findIndex(item => item.productName === productName);
-
-    if (existingProductIndex !== -1) {
-        req.session.cart[existingProductIndex].productQuantity += quantity;
-    } else {
-        req.session.cart.push({ productName, productQuantity: quantity, productPrice });
-    }
-
-    res.redirect('/cart');
 });
 
 // Cart page
