@@ -60,31 +60,46 @@ const getProducts = async () => {
 
 // Home page (Product list)
 app.get('/', async (req, res) => {
-    const products = await getProducts();
-    res.render('index', { products });
+    try {
+        const products = await getProducts();
+        res.render('index', { products });
+    } catch (err) {
+        console.error('Error fetching products:', err);
+        res.status(500).send('Server error while fetching products.');
+    }
 });
 
 // Product details
-app.get('/product/:name', (req, res) => {
-    const products = getProducts();
-    const product = products.find(p => p.name === req.params.name);
+app.get('/product/:name', async (req, res) => {
+    try {
+        const products = await getProducts();
+        const product = products.find(p => p.name === req.params.name);
 
-    if (product) {
-        res.render('product', { product });
-    } else {
-        res.status(404).send('Product not found');
+        if (product) {
+            res.render('product', { product });
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (err) {
+        console.error('Error fetching product details:', err);
+        res.status(500).send('Server error while fetching product details.');
     }
 });
 
 // Registration of an order
-app.get('/order/:product', (req, res) => {
-    const products = getProducts();
-    const product = products.find(p => p.name === req.params.product);
+app.get('/order/:product', async (req, res) => {
+    try {
+        const products = await getProducts();
+        const product = products.find(p => p.name === req.params.product);
 
-    if (product) {
-        res.render('order', { product });
-    } else {
-        res.status(404).send('Product not found');
+        if (product) {
+            res.render('order', { product });
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (err) {
+        console.error('Error fetching product for order:', err);
+        res.status(500).send('Server error while fetching product for order.');
     }
 });
 
@@ -165,9 +180,13 @@ app.post('/cart/add', (req, res) => {
 
 // Cart page
 app.get('/cart', (req, res) => {
-    const cart = req.session.cart || []; // If the basket does not exist, initialise it as an empty array
-
-    res.render('cart', { cart });
+    try {
+        const cart = req.session.cart || []; // If the basket does not exist, initialise it as an empty array
+        res.render('cart', { cart });
+    } catch (err) {
+        console.error('Error fetching cart:', err);
+        res.status(500).send('Server error while fetching cart.');
+    }
 });
 
 const productSchema = new mongoose.Schema({
@@ -267,10 +286,14 @@ app.post("/wishlist/remove", (req, res) => {
 
 // Displaying the wish list
 app.get("/wishlist", (req, res) => {
-    const wishlist = req.session.wishlist || []; // If the list does not exist, initialise as empty
-    res.render("wishlist", { wishlist });
+    try {
+        const wishlist = req.session.wishlist || []; // If the list does not exist, initialise it as empty
+        res.render("wishlist", { wishlist });
+    } catch (err) {
+        console.error('Error fetching wishlist:', err);
+        res.status(500).send('Server error while fetching wishlist.');
+    }
 });
-
 
 app.post('/cart/remove', (req, res) => {
     const { productName, productPrice } = req.body;
