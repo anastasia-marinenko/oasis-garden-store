@@ -180,7 +180,29 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
+// Функція для завантаження продуктів з файлу в базу даних
+const loadProductsFromFile = async () => {
+    try {
+        const fileData = fs.readFileSync('./data/products.json', 'utf-8');
+        const products = JSON.parse(fileData);
+
+        // Перевіряємо, чи є продукти в базі
+        const existingProducts = await Product.countDocuments();
+        if (existingProducts === 0) {
+            // Якщо база порожня, записуємо продукти з файлу
+            await Product.insertMany(products);
+            console.log('Products loaded into the database');
+        }
+    } catch (err) {
+        console.error('Error loading products from file:', err);
+    }
+};
+
+// Викликаємо цю функцію при запуску сервера
+loadProductsFromFile();
+
 // Замість запису у файл, оновлюємо дані у MongoDB
+// Оновлення бази після завершення сесії або при першому запиті
 app.post('/order/confirm', async (req, res) => {
     const cart = req.session.cart || [];
     if (cart.length === 0) {
@@ -199,6 +221,11 @@ app.post('/order/confirm', async (req, res) => {
 
             product.quantity -= item.productQuantity;
             await product.save();
+        }
+
+        // Оновлюємо базу даних з файлу, коли сесія завершена
+        if (!req.session.cart) {
+            await loadProductsFromFile(); // Оновлюємо базу даних при завершенні сесії
         }
 
         req.session.cart = [];
