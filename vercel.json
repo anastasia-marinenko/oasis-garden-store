@@ -16,8 +16,8 @@
             "dest": "app.js"
         },
         {
-            "src": "/data/products.json",
-            "dest": "/data/products.json"
+            "src": "/data/(.*)",
+            "dest": "/data/$1"
         },
         {
             "src": "/public/(.*)",
