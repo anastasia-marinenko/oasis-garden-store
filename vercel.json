@@ -6,15 +6,23 @@
             "use": "@vercel/node"
         },
         {
+            "src": "orderProcessor.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "routes/**",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "data/**",
+            "use": "@vercel/static"
+        },
+        {
             "src": "public/**",
             "use": "@vercel/static"
         },
         {
             "src": "views/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "data/**",
             "use": "@vercel/static"
         }
     ],
